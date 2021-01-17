@@ -37,6 +37,8 @@ document.getElementById("btn").addEventListener("click", );
 
 function processEvent() {
 
+    
+
 
 
 
@@ -45,15 +47,17 @@ function processEvent() {
 
 
 function processForm() {
+    let name=document.getElementById("name").value;
+    let weight=document.getElementById("weight").value;
+    let heightByFoot=document.getElementById("feet").value;
+    let heightByInch=document.getElementById("inches").value;
+    let totalHeight = heightByFoot + heightByInch;
+    return  Human = new HumanConstructor(name,height,weight);
 
-
-
-
-    
 }
 
 
-function DinousaurConstruct (species,weight,height,diet,where,when,fact) {
+function DinousaurConstructor (species,weight,height,diet,where,when,fact) {
     this.species = species;
     this.weight = weight;
     this.height = height;
@@ -64,12 +68,10 @@ function DinousaurConstruct (species,weight,height,diet,where,when,fact) {
 
 }
 
-function HumanConstruct (name,height,weight){
+function HumanConstructor (name,height,weight){
     this.name = name;
     this.height = height;
     this.weight = weight;
-
-
 }
 
 
