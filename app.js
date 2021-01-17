@@ -30,3 +30,62 @@
 
 
 // On button click, prepare and display infographic
+
+document.getElementById("btn").addEventListener("click", );
+
+
+
+function processEvent() {
+
+
+
+
+}
+
+
+
+function processForm() {
+
+
+
+
+    
+}
+
+
+function DinousaurConstruct (species,weight,height,diet,where,when,fact) {
+    this.species = species;
+    this.weight = weight;
+    this.height = height;
+    this.diet = diet;
+    this.where = where;
+    this.when = when;
+    this.fact = fact;
+
+}
+
+function HumanConstruct (name,height,weight){
+    this.name = name;
+    this.height = height;
+    this.weight = weight;
+
+
+}
+
+
+
+
+
+//const Dino = new DinousaurConstruct();
+
+
+
+
+
+
+
+
+
+
+const newDiv = document.createElement('div');
+
