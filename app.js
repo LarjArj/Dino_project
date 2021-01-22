@@ -1,48 +1,16 @@
 
-    // Create Dino Constructor
-
-
-    // Create Dino Objects
-
-
-    // Create Human Object
-
-    // Use IIFE to get human data from form
-
-
-    // Create Dino Compare Method 1
-    // NOTE: Weight in JSON file is in lbs, height in inches. 
-
-    
-    // Create Dino Compare Method 2
-    // NOTE: Weight in JSON file is in lbs, height in inches.
-
-    
-    // Create Dino Compare Method 3
-    // NOTE: Weight in JSON file is in lbs, height in inches.
-
-
-    // Generate Tiles for each Dino in Array
-  
-        // Add tiles to DOM
-
-    // Remove form from screen
-
+   
 
 // On button click, prepare and display infographic
+//(function () {
+    //document.getElementById("btn").addEventListener("click", processEvent);
 
-document.getElementById("btn").addEventListener("click", processEvent);
-
-
+//})();
 
 function processEvent() {
     const Human = processForm();
 
     
-
-
-
-
 }
 
 
@@ -117,6 +85,7 @@ function compareDiet(Dino,Human){
 
     else{
         
+        
 
 
     }
@@ -127,16 +96,38 @@ function compareDiet(Dino,Human){
 }
 
 
-//const Dino = new DinousaurConstruct();
-
-
 //fetch Json dino data
 function parseDino(){
+    let dinos = require('/Users/arjunreddy31/udacity_projects/Javascript/dino.json');
+    const dino_array  = [];
+    for (key in dinos){
+        dino_array.push(dinos[key]);   
+    }
+    return dino_array;
 
+}
+
+
+const getRandomDino = { parseDino: function (){
+    let dinos = require('/Users/arjunreddy31/udacity_projects/Javascript/dino.json');
+    const dino_array
+    },
+
+}
+
+
+
+const Dino_facts = {};
+
+function createTiles(){
 
 
 }
 
+
+
+// process click, get human data, pick 7 randome dinosaurs, 
+//1 pigeon,1 human, compare atttributes get random fact// output grid
 
 
 
