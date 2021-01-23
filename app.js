@@ -9,16 +9,24 @@
 
 function processEvent() {
     const Human = processForm();
+    const Dinos = getRandomDino();
+
+    for (dino in Dinos ){
+        
+
+
+    }
+    
 
     
 }
 
 
 function processForm() {
-    var name=document.getElementById("name").value;
-    var weight=document.getElementById("weight").value;
-    var heightByFoot=document.getElementById("feet").value * 12 ;
-    var heightByInch=document.getElementById("inches").value;
+    var name = document.getElementById("name").value;
+    var weight = document.getElementById("weight").value;
+    var heightByFoot = document.getElementById("feet").value * 12 ;
+    var heightByInch = document.getElementById("inches").value;
     var totalHeight = heightByFoot + heightByInch;
     return  Human = new HumanConstructor(name,totalHeight,weight);
 
@@ -40,6 +48,11 @@ function HumanConstructor (name,height,weight){
     this.name = name;
     this.height = height;
     this.weight = weight;
+}
+
+function compareAndGetFact(){
+
+
 }
 
 
@@ -108,13 +121,21 @@ function parseDino(){
 }
 
 
-const getRandomDino = { parseDino: function (){
-    let dinos = require('/Users/arjunreddy31/udacity_projects/Javascript/dino.json');
-    const dino_array
-    },
+function getRandomDino(){
+    var Dino_list =parseDino();
+    var random = getRndInteger(0,Dino_list.length);
+    var output = []
+    while (Dino.length>0){
+        var popped = Dino_list.pop(random);
+        output.push(popped);
+    }
+    return output;
 
 }
 
+function getRndInteger(min, max) {
+    return Math.floor(Math.random() * (max - min + 1) ) + min;
+  }
 
 
 const Dino_facts = {};
@@ -131,6 +152,3 @@ function createTiles(){
 
 
 
-(function () {
-    
-})();
