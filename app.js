@@ -44,10 +44,11 @@ function DinousaurConstructor (species,weight,height,diet,where,when,fact) {
 
 }
 
-function HumanConstructor (name,height,weight){
+function HumanConstructor (name,height,weight,diet){
     this.name = name;
     this.height = height;
     this.weight = weight;
+    this.diet = diet;
 }
 
 function compareAndGetFact(){
@@ -59,12 +60,12 @@ function compareAndGetFact(){
 
 function compareHeight (Dino,Human){
     if (Human.height==Dino.height){
-        var potentialFact = "You  and "+ Dino.name + "are the same height";
+        var potentialFact = "A "+ Dino.name + "was the same height as you";
     
     }
         // potential fact = "You " + Dino.name + "are the same height"
     if (Human.height > Dino.height){
-       var potentialFact = "You "+ "are taller than" + Dino.name;
+       var potentialFact = "You "+ "are taller than a " + Dino.name +"was";
     }
     else{
         var potentialFact = "You "+ "are shorter than" + Dino.name;
@@ -75,7 +76,7 @@ function compareHeight (Dino,Human){
 function compareWeight (Dino,Human){
 
     if (Human.weight == Dino.weight){
-        var potentialFact = "You" + Dino.name + "are the same weight";
+        var potentialFact = "A" + Dino.name + "was the same weight as you";
 
     }
     if (Human.weight > Dino.weight){
@@ -92,14 +93,18 @@ function compareWeight (Dino,Human){
 function compareDiet(Dino,Human){
 
     if (Dino.diet == Human.diet){
-        // potentialFact = "Wow " + Dinsour.name + "was a" + Human.diet + "too"
+        var potentialFact = "Wow, " + Dinsour.name + "was a" + Human.diet + "too"
 
     }
 
     else{
-        
-        
+        var potentialFact = "Wow,your diet is much different than a "+Dino.diet+
+        "which was strictly a Dino.diet"
 
+
+
+
+    
 
     }
 
@@ -123,9 +128,9 @@ function parseDino(){
 
 function getRandomDino(){
     var Dino_list =parseDino();
-    var random = getRndInteger(0,Dino_list.length);
     var output = []
     while (Dino.length>0){
+        var random = getRndInteger(0,Dino_list.length)
         var popped = Dino_list.pop(random);
         output.push(popped);
     }
@@ -135,10 +140,9 @@ function getRandomDino(){
 
 function getRndInteger(min, max) {
     return Math.floor(Math.random() * (max - min + 1) ) + min;
-  }
+}
 
 
-const Dino_facts = {};
 
 function createTiles(){
 
