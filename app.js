@@ -51,18 +51,26 @@ function processEvent() {
 /// Uses DOM principles to create a tile which will ultimately be 
 //appended to the grid
 function createTile(animal,fact){
-    var tileDiv = document.createElement("div");
-    tileDiv.className = "tile-object";
-    var animalSpeciesDiv = document.createElement("h3");
-    animalSpeciesDiv.innerText = animal.species;
-    tileDiv.appendChild(animalSpeciesDiv);
-    var animalImageDiv = document.createElement("img");
-    animalImageDiv.src = animal.picture;
-    tileDiv.appendChild(animalImageDiv);
-    var animalFactDiv = document.createElement("p");
-    animalFactDiv.innerText = fact;
-    tileDiv.append(animalFactDiv);
-
+    
+    if (!animal instanceof HumanConstructor){
+        var tileDiv = document.createElement("div");
+        tileDiv.className = "tile-object";
+        var animalSpeciesDiv = document.createElement("h3");
+        animalSpeciesDiv.innerText = animal.species;
+        tileDiv.appendChild(animalSpeciesDiv);
+        var animalImageDiv = document.createElement("img");
+        animalImageDiv.src = animal.picture;
+        tileDiv.appendChild(animalImageDiv)
+        var animalFactDiv = document.createElement("p");
+        animalFactDiv.innerText = fact;
+        tileDiv.append(animalFactDiv);
+    }
+    else{
+        var tileDiv = document.createElement("div");
+        tileDiv.className = "tile-object";
+        var animalNameDiv = document.createElement("h3");
+        animalNameDiv.innerText = animal.name;
+        tileDiv.appendChild(animalNameDiv);
     return tileDiv;
 }
 
@@ -188,6 +196,8 @@ function getRandomDinos(){
 function getRndInteger(min, max) {
     return Math.floor(Math.random() * (max - min + 1) ) + min;
 }
+
+
 
 
 
