@@ -90,8 +90,6 @@ function parseDino(){
 
 // On button click, prepare and display infographic
 (function () {
-    
-   //let document = createDocument("/Users/arjunreddy31/udacity_projects/Javascript/index.html");
     document.getElementById("btn").addEventListener("click", processEvent());
 })();
 
