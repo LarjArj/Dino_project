@@ -172,7 +172,7 @@ function DinousaurConstructor (species,weight,height,diet,facts) {
     this.height = height;
     this.diet = diet;
     this.facts = facts;
-    this.picture = require("/Users/arjunreddy31/udacity_projects/Javascript/"+species.toLowerCase()+".png")
+    this.picture = require("/Users/arjunreddy31/udacity_projects/Javascript/"+species.toLowerCase()+".png");
 
 }
 
