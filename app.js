@@ -88,10 +88,12 @@ function parseDino(){
 
 }
 
+console.log(parseDino());
+
 // On button click, prepare and display infographic
-(function () {
-    document.getElementById("btn").addEventListener("click", processEvent());
-})();
+//(function () {
+    //document.getElementById("btn").addEventListener("click", processEvent);
+//})();
 
 
 function processEvent() {
@@ -101,7 +103,7 @@ function processEvent() {
     let factToInsert=[];
     /// hide initial form once button is clicked
     document.getElementById("dino-compare").style.display = "none";
-    for (idx = 0; idx<Dinos.length ;i++){
+    for (idx = 0; idx<Dinos.length ;idx++){
         let animal;
         animal = Dinos[idx];
         if (idx == 3){
@@ -254,14 +256,16 @@ function getRandomDinos(){
     let output = []
     while (Dino_list.length>0){
         let random = getRndInteger(0,Dino_list.length);
-        let popped = Dino_list.slice(random,random+1);
+        swap(random,Dino.length-1,Dino_list);
+
+        let popped = Dino_list.pop();
         output.push(popped);
     }
     return output;
 
 }
 function getRndInteger(min, max) {
-    return Math.floor(Math.random() * (max - min + 1) ) + min;
+    return Math.floor((Math.random() * (max)) + min);
 }
 
 
@@ -272,3 +276,31 @@ function getRndInteger(min, max) {
 
 
 
+function test(){
+    let li = [2,32,13,6,8];
+    let output  =[];
+    while (li.length>0){
+        let random = getRndInteger(0,li.length);
+        swap(random,0,li);
+
+        let popped = li.pop();
+        output.push(popped);
+        
+    }
+    return output;
+}
+
+function swap(a,b,array){
+    let temp = array[a];
+    array[a] = array[b];
+    array[b] = temp;
+
+
+
+}
+
+
+
+
+//const temp = [];
+//console.log(test());
