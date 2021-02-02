@@ -1,3 +1,4 @@
+
 const Dino_info = {
     "Dinos": [
         {
@@ -88,43 +89,55 @@ function parseDino(){
 
 }
 
-console.log(parseDino());
 
-// On button click, prepare and display infographic
-//(function () {
-    //document.getElementById("btn").addEventListener("click", processEvent);
-//})();
+
+
+//On button click, prepare and display infographic
+(function () {
+    document.getElementById("btn").addEventListener("click", processEvent);
+})();
 
 
 function processEvent() {
     let Human = processForm();
     let Dinos = getRandomDinos();
     let Dinosaurs = {};
-    let factToInsert=[];
+    let factToInsert=null;
     /// hide initial form once button is clicked
     document.getElementById("dino-compare").style.display = "none";
-    for (idx = 0; idx<Dinos.length ;idx++){
+    let counter=0;
+    let idx =0;
+    while  (counter<Dinos.length){
         let animal;
-        animal = Dinos[idx];
+        animal = Dinos[counter];
         if (idx == 3){
              animal = Human;
 
         }
         
-        if(animal instanceof DinousaurConstructor){
-            let currentSpecies = animal["species"];
-            let facts = compareGetFacts(Human,animal);
-            facts.push(animal["when"]);
-            facts.push(animal["where"]);
+        else{
+            counter++;
+           // let currentSpecies = animal["species"];
+           // let facts = compareGetFacts(Human,animal);
+           // facts.push(animal["when"]);
+            //facts.push(animal["where"]);
+            //facts.push(animal["fact"]);
 
-            let Dino = new DinousaurConstructor(currentSpecies,animal["weight"],animal["height"],animal["diet"],facts);
-            Dinosaurs[currentSpecies]=Dino;
-            let Dino_facts = Dinosaurs[currentSpecies].facts;
+            let Dino = new DinousaurConstructor(animal["species"],animal["weight"],animal["height"],animal["diet"],animal["fact"]);
+            animal = Dino;
+            let facts = compareGetFacts(animal,Human);
+            animal.facts=facts;
+            Dinosaurs[animal.name]=Dino;
+
+
+            let Dino_facts = animal.facts;
             factToInsert = getRandomFact(Dino_facts);
-        }
-       
+            
 
-        gridTile = createTile(animal,factToInsert);
+        }
+        idx++;
+
+        gridTile = createTile(animal,factToInsert,idx);
         document.getElementById("grid").appendChild(gridTile);
 
         
@@ -135,24 +148,25 @@ function processEvent() {
 
 /// Uses DOM principles to create a tile which will ultimately be 
 //appended to the grid
-function createTile(animal,fact){
-    
-        const tileDiv = document.createElement("div");
-        tileDiv.className = "tile-object";
-        const animalSpeciesDiv = document.createElement("h3");
-        animalSpeciesDiv.innerText = animal.species;
-        tileDiv.appendChild(animalSpeciesDiv);
+function createTile(animal,fact,idx){
 
-        if (animal instanceof Dino){
-            const animalImageDiv = document.createElement("img");
-            animalImageDiv.src = animal.picture;
-            tileDiv.appendChild(animalImageDiv)
-            const animalFactDiv = document.createElement("p");
-            animalFactDiv.innerText = fact;
-            tileDiv.appendChild(animalFactDiv);
-        }
+    let tileItemDiv = document.createElement("div");
+    tileItemDiv.className = "grid-item";
+    let animalNameDiv = document.createElement("h3");
+    animalNameDiv.innerText = animal.name;
+    tileItemDiv.appendChild(animalNameDiv);
 
-    return tileDiv;
+
+    if (idx!=3){
+        let animalImageDiv = document.createElement("img");
+        animalImageDiv.src = animal.picture;
+        tileItemDiv.appendChild(animalImageDiv)
+        let animalFactDiv = document.createElement("p");
+        animalFactDiv.innerText = fact;
+        tileItemDiv.appendChild(animalFactDiv);
+    }
+
+    return tileItemDiv;
 }
 
 /// Processes User input and creates a Human obj
@@ -168,13 +182,13 @@ function processForm() {
 
 }
 //// Dinosaur Constructor class but can be used for birds and fyling reptiles
-function DinousaurConstructor (species,weight,height,diet,facts) {
-    this.species = species;
+function DinousaurConstructor (name,weight,height,diet,facts) {
+    this.name = name;
     this.weight = weight;
     this.height = height;
     this.diet = diet;
     this.facts = facts;
-    this.picture = require("/Users/arjunreddy31/udacity_projects/Javascript/"+species.toLowerCase()+".png");
+    this.picture = ".images/"+name.toLowerCase()+".png";
 
 }
 
@@ -188,7 +202,7 @@ function HumanConstructor (name,height,weight,diet){
 
 //// compares Dino to Human on by weight,height,diet and creates a list of facts
 ///  for every dino
-function compareGetFacts(Human,Dino){
+function compareGetFacts(Dino,Human){
     let facts = [];
     facts.push(compareHeight(Dino,Human));
     facts.push(compareWeight(Dino,Human));
@@ -201,14 +215,14 @@ function compareGetFacts(Human,Dino){
 function compareHeight (Dino,Human){
     let potentialFact;
     if (Human.height==Dino.height){
-         potentialFact = "A "+ Dino.name + "was the same height as you";
+         potentialFact = "A "+ Dino.name + " was the same height as you";
     }
         // potential fact = "You " + Dino.name + "are the same height"
     if (Human.height > Dino.height){
-        potentialFact = "You "+ "are taller than a " + Dino.name +"was";
+        potentialFact = "You "+ "are taller than a " + Dino.name +" was";
     }
     else{
-         potentialFact = "You "+ "are shorter than" + Dino.name + "was";
+         potentialFact = "You "+ "are shorter than a " + Dino.name + " was";
     }
     return potentialFact;
 }
@@ -216,13 +230,13 @@ function compareHeight (Dino,Human){
 function compareWeight (Dino,Human){
     let potentialFact;
     if (Human.weight == Dino.weight){
-        potentialFact = "A" + Dino.name + "was the same weight as you";
+        potentialFact = "A " + Dino.name + " was the same weight as you";
     }
     if (Human.weight > Dino.weight){
-        potentialFact = "You weigh more than a "+ Dino.name + "ever Weighed";
+        potentialFact = "You weigh more than a "+ Dino.name + " ever weighed";
     }
     else{
-        potentialFact = "You weigh less than a "+ Dino.name + "everWeighed" ;
+        potentialFact = "You weigh less than a "+ Dino.name + " ever weighed" ;
     }
     return potentialFact;
 }
@@ -231,12 +245,12 @@ function compareWeight (Dino,Human){
 function compareDiet(Dino,Human){
     let potentialFact;
     if (Dino.diet == Human.diet){
-        potentialFact = "Wow, " + Dinsour.name + "was a" + Human.diet + "too";
+        potentialFact = "Wow, " + Dinsour.name + "was a " + Dino.diet + " too";
     }
 
     else{
-        potentialFact = "Wow,your diet is much different than a "+Dino.namet+
-        "which was strictly a"+ Dino.diet;
+        potentialFact = "Wow, your diet is much different than a "+Dino.name+
+        " which was strictly a "+ Dino.diet;
     }
     return potentialFact;
 
@@ -245,7 +259,8 @@ function compareDiet(Dino,Human){
 // Gets random fact from input of facts array from animal/dino
 function getRandomFact(facts){
     let random = getRndInteger(0,facts.length);
-    return facts[random];
+    swap(random,facts.length-1,facts);
+    return facts.pop();
 }
 
 /// When called from function processEvent() this will
@@ -256,7 +271,7 @@ function getRandomDinos(){
     let output = []
     while (Dino_list.length>0){
         let random = getRndInteger(0,Dino_list.length);
-        swap(random,Dino.length-1,Dino_list);
+        swap(random,Dino_list.length-1,Dino_list);
 
         let popped = Dino_list.pop();
         output.push(popped);
@@ -303,4 +318,11 @@ function swap(a,b,array){
 
 
 //const temp = [];
-//console.log(test());
+//console.log(getRandomDinos());
+
+
+//const Dino = new DinousaurConstructor("Pigeon",0.5,9,'herbavor','bird');
+
+//console.log(Dino instanceof DinousaurConstructor);
+
+//console.log(PNG);
