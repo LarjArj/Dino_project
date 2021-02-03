@@ -135,11 +135,11 @@ function processEvent() {
             
 
         }
-        idx++;
+        
 
         gridTile = createTile(animal,factToInsert,idx);
         document.getElementById("grid").appendChild(gridTile);
-
+        idx++;
         
 
     }
@@ -188,7 +188,7 @@ function DinousaurConstructor (name,weight,height,diet,facts) {
     this.height = height;
     this.diet = diet;
     this.facts = facts;
-    this.picture = ".images/"+name.toLowerCase()+".png";
+    this.picture = "./images/"+name.toLowerCase()+".png";
 
 }
 
