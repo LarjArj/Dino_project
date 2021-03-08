@@ -17,7 +17,7 @@ We have supplied some of the foundational code for you. So follow these steps to
 
 1. We'll start with the typical setup - clone theis repo and install the dependencies
 
-```git clone git@github.com:udacity/Javascript.git```
+
 
 2. Decide how you will work with classes, then build out your classes and objects. 
 
